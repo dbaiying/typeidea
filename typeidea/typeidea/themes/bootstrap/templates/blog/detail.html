@@ -2,7 +2,12 @@
 {% load comment_block %}
 
 {% block title %} {{ post.title }} {% endblock %}
-
+{% block extra_head %}
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
 {% block main %}
     {% if post %}
         <h1>{{ post.title }}</h1>
@@ -12,7 +17,9 @@
         </div>
         <hr/>
         <p>
-        {{ post.content }}
+        {% autoescape off %}
+        {{ post.content_html }}
+        {% endautoescape %}
         </p>
     {% endif %}
     {% comment_block request.path %}

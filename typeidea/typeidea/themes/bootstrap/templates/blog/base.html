@@ -11,6 +11,8 @@
             margin-bottom: 5px;  //配置每个post卡片下面的间隔
         }
     </style>
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body>
 <div class="container head">
@@ -25,7 +27,8 @@
                {% endfor %}
            </ul>
            <form class="form-inline my-2 my-lg-0" action='/search/' method="GET">
-               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+               <input class="form-control mr-sm-2" name="keyword"
+                      type="search" placeholder="Search" aria-label="Search" value="{{ keyword }}">
                <button class="btn btn-outline-success" type="submit">搜索</button>
            </form>
        </div>
